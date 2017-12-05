@@ -1,6 +1,6 @@
 # Narrative-Helper-I
 
-#Purpose:
+# Purpose:
 1. To assist physicians with medical documentation.
 
 # Functionality:
