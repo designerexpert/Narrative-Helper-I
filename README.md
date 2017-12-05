@@ -2,6 +2,8 @@
 
 # Purpose:
 1. To assist physicians with medical documentation.
+2. Reduce duplication of work in the medical field.
+3. Help physicians get back to talking with their patients, instead of typing at the computer.
 
 # Functionality:
 1. Permit: definition of Keywords via a Right Click Menu.
