@@ -1,4 +1,8 @@
 # Narrative-Helper-I
+
+#Purpose:
+1. To assist physicians with medical documentation.
+
 # Functionality:
 1. Permit: definition of Keywords via a Right Click Menu.
 2. Permit: definitions of Templates via a Right Click Menu.
