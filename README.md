@@ -9,7 +9,7 @@
 # Architecture:
 ![architecture_v_001](https://user-images.githubusercontent.com/20391435/33628636-657ba17c-d9cf-11e7-881c-9b6e3d13e25b.JPG)
 
-#Implementation:
+# Implementation:
 ## Permit: definition of Keywords via a Right Click Menu.
 1. Upon (Right Clicking) a Highlighted Word on a text field, or empty space.
     * Bring Up a Menu containing option: “Add to list of keywords”
