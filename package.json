@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
     "react": "^16.2.0",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
     "react-scripts": "1.0.17",
-    "cors": "^2.8.3",
-    "express": "^4.15.2"
+    "redux": "^3.7.2",
+    "redux-promise": "^0.5.3"
   },
   "scripts": {
     "start": "react-scripts start",

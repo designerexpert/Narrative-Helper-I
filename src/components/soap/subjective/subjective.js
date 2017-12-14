@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './subjective.css';
+import { connect } from 'react-redux';
+import { getData } from '../../../actions';
 
 class SoapDescription extends Component {
     constructor() {
@@ -12,8 +14,8 @@ class SoapDescription extends Component {
         }
     }
     componentDidMount() {
-        this.setState({desc: this.props.desc, outer: this.props.isouter});
-        console.log(this.props.isouter)
+        this.setState({ desc: this.props.desc, outer: this.props.isouter });
+        // console.log(this.props.isouter)
     }
 
     handleClick = () => {
@@ -27,7 +29,7 @@ class SoapDescription extends Component {
             </div>
         );
         if (this.state.outer === 'false') {
-            console.log('State is False');
+            // console.log('State is False');
             returnVal = (
                 <div className={String(this.state.styleInner)} onClick={this.handleClick}>
                     {this.state.desc}
@@ -48,15 +50,15 @@ class SoapSelection extends Component {
         }
     }
     componentDidMount() {
-        this.setState({desc: this.props.desc});
+        this.setState({ desc: this.props.desc });
     }
 
     handleClick = (evt) => {
         if (this.state.styleToggle === false) {
-            this.setState({style: 'soap__slection--clicked', styleToggle: true});
+            this.setState({ style: 'soap__slection--clicked', styleToggle: true });
             return;
         } else if (this.state.styleToggle === true) {
-            this.setState({style: 'soap__selection', styleToggle: false});
+            this.setState({ style: 'soap__selection', styleToggle: false });
             return;
         }
     }
@@ -80,7 +82,12 @@ class SoapSelection extends Component {
 }
 
 
-class Subjective extends Component {
+const dDesc = 'divisionDescription';
+const sDesc = 'SoapDescription';
+const sSel = 'SoapSelection';
+const innerDivDesc = 'innerDivDesc';
+
+class Narrative extends Component {
     constructor() {
         super();
         this.state = {
@@ -89,99 +96,68 @@ class Subjective extends Component {
     }
 
     componentDidMount() {
-
+        this.props.getData();
     }
 
     render() {
-        return(
-        <div className='soap'>
-            <div className='soap__heading'>ROS: <b>(HIGHLIGHT POSITIVE ONLY)</b></div>
-            <div className='soap__section'>
-                <div className='description'>
-                    <SoapDescription desc='CONSITUTIONAL:' isouter='true'/>
-                </div>
-                <div className='selections'>
-                    <SoapSelection desc='FEVER' />
-                    <SoapSelection desc='CHILLS' />
-                    <SoapDescription desc='WEIGHT:' isouter='false'/>
-                    <SoapSelection desc='LOSS' />
-                    <SoapDescription desc='/' isouter='false'/>
-                    <SoapSelection desc='GAIN' />
-                    <SoapDescription desc='' isouter='false'/>
-                    <SoapSelection desc='WEAKNESS GENERAL' />
-                </div>
+        console.log('Narrative props: ', this.props.state.ros)
+        return (
+            <div>
+                {this.props.state.ros.map((item, index) => {
+                    return (
+                        <div className='soap' key={index}>
+                            <div className='soap__heading' key={index}>
+                                {item.divDesc}
+                            </div>
+                            <div>
+                                {item.divContent.map((item, index) => {
+                                    return (
+                                        <div className='soap__section' key={index}>
+                                            <div className='description' key={index}>
+                                                {item.subDivDesc}
+                                            </div>
+                                            <div className='selections' key={index}>
+                                                {item.subDivContent.map((item, index) => {
+                                                    if (item.type === sSel) {
+                                                        return (
+                                                            <SoapSelection desc={item.text} key={index}/>
+                                                        );
+                                                    } else {
+                                                        return (
+                                                            <div className='InnerSelections' key={index}>
+                                                                <SoapDescription desc={item.text} isouter='false' />
+                                                                {item.content.map((item, index) => {
+                                                                    if (item.type === sSel) {
+                                                                        return (
+                                                                            <SoapSelection desc={item.text} key={index}/>
+                                                                        );
+                                                                    } else {
+                                                                        return (
+                                                                            <SoapDescription desc={item.text} isouter='false' key={index}/>
+                                                                        );
+                                                                    }
+                                                                })}
+                                                            </div>
+                                                        )
+                                                    }
+                                                })}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
-            <div className='soap__section'>
-                <div className='description'>
-                    <SoapDescription desc='EYES:'/>
-                </div>
-                <div className='selections'>
-                    <SoapSelection desc='BLURRED VISION' />
-                    <SoapSelection desc='SECRETIONS' />
-                    <SoapSelection desc='REDNESS' />
-                    <SoapSelection desc='ITCHING' />
-                    <SoapSelection desc='GLAUCOMA' />
-                    <SoapSelection desc='CATARACTS' />
-                </div>
-            </div>
-            <div className='soap__section'>
-                <div className='description'>
-                    <SoapDescription desc='E.N.T.:'/>
-                </div>
-                <div className='selections'>
-                    <SoapSelection desc='EARACHE' />
-                    <SoapSelection desc='NASAL DISCHARGE' />
-                    <div className='description--inner'>
-                        <SoapDescription desc='NOSE' isouter='false'/>
-                        <SoapSelection desc='ITCHY' />
-                        <SoapDescription desc='/' isouter='false'/>
-                        <SoapSelection desc='RUNNY' />
-                        <SoapDescription desc='/' isouter='false'/>
-                        <SoapSelection desc='BLOODY' />
-                    </div>
-                    <SoapSelection desc='SORE THROAT' />
-                    <SoapSelection desc='POSTNASAL DRIP' />
-                    <SoapSelection desc='HOARSENESS' />
-                    <SoapSelection desc='SINUS PAIN' />
-                </div>                
-            </div>
-            <div className='soap__section'>
-                <div className='description'>
-                    <SoapDescription desc='RESPIRATORY:'/>
-                </div>
-                <div className='selections'>
-                    <SoapSelection desc='COUGH' />
-                    <SoapSelection desc='(DRY PRODUCTIVE)' />
-                    <SoapSelection desc='SOB' />
-                    <SoapSelection desc='WHEEZING' />
-                    <div className='description--inner'>
-                        <SoapDescription desc='SOB:' isouter='false'/>
-                        <SoapSelection desc='WITH EFFORT' />
-                        <SoapDescription desc='/' isouter='false'/>
-                        <SoapSelection desc='LYING' />
-                    </div>
-                </div>                
-            </div>
-            <div className='soap__section'>
-                <div className='description'>
-                    <SoapDescription desc='CARDIOVASCULAR:'/>
-                </div>
-                <div className='selections'>
-                    <SoapSelection desc='CHEST PAIN' />
-                    <SoapDescription desc='/' isouter='false'/>
-                    <SoapSelection desc='PRESSURE' />
-                    <SoapDescription desc='/' isouter='false'/>
-                    <SoapSelection desc='TIGHTNESS' />
-                    <SoapSelection desc='PALPITATIONS' />
-                    <SoapSelection desc='EDEMA LOWER EXTREMITIES' />
-                    <SoapSelection desc='LEG CRAMPS' />
-                </div>                
-            </div>
-
-
-        </div>
         );
     }
 }
 
-export default Subjective;
+const mapStateToProps = (state) => {
+    return {
+        state: state
+    }
+}
+
+export default connect(mapStateToProps, { getData })(Narrative);

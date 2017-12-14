@@ -45,6 +45,12 @@
     align-items: flex-start;
 }
 
+.InnerSelections {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
 .soap__description--inner {
     display: flex;
     padding: 0px 10px 0px 6px;
