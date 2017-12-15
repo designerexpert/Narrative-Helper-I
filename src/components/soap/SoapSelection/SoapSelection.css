@@ -1,0 +1,18 @@
+.SS__slection--clicked {
+    box-sizing: border-box;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    font-weight: bold;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #14A4EC;
+    background-color: rgb(215, 255, 106);
+}
+
+.SS__selection {
+    box-sizing: border-box;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #14A4EC;
+    background-color: white;
+}

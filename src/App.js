@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Narrative from './components/soap/subjective/subjective';
+import Narrative from './components/MainUI/MainUI';
 
 class App extends Component {
   render() {

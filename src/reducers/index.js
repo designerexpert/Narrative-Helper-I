@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { GET_DATA, ADD_DATA, DEL_DATA } from '../actions';
+import { GET_DATA, ADD_DATA, DEL_DATA, GET_NARRATIVE } from '../actions';
 
 const rosReducer = (rosData = [], action) => {
     switch (action.type) {
@@ -14,8 +14,18 @@ const rosReducer = (rosData = [], action) => {
     }
 };
 
+const selectionsReducer = (narrative = [], action) => {
+    switch (action.type) {
+        case GET_NARRATIVE:
+            return action.payload.data;
+        default:
+            return narrative;
+    }
+}
+
 const rootReducer = combineReducers({
-    ros: rosReducer
+    ros: rosReducer,
+    selections: selectionsReducer,
 });
 
 export default rootReducer;

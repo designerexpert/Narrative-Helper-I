@@ -1,0 +1,15 @@
+.SD__description__inner {
+    display: flex;
+    padding: 5px 10px 5px 10px;
+    align-items: flex-start;
+    font-weight: 600;
+    color: #0072C6;
+}
+
+.SD__description__outer {
+    display: flex;
+    padding: 5px 10px 5px 10px;
+    align-items: flex-start;
+    font-weight: 600;
+    color: #0072C6;
+}
