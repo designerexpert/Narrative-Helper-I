@@ -1,6 +1,5 @@
 import './SoapSelection.css';
 import React, { Component } from 'react';
-import connect from 'react-redux';
 
 class SoapSelection extends Component {
     constructor() {

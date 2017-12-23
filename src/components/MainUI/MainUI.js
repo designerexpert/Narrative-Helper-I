@@ -26,29 +26,27 @@ class MainUI extends Component {
     }
 
     render() {
-        console.log('MainUI props: ', this.props.state.ros)
-        console.log('MainUI narrative: ', this.props.state.selections)
         return (
             <div>
                 <div>
                     {this.props.state.ros.map((item, index) => {
                         return (
-                            <div className='MUI' key={item.id}>
-                                <div className='MUI__heading' key={item.id}>
+                            <div className='MUI' key={item.index}>
+                                <div className='MUI__heading' key={item.index}>
                                     {item.divDesc}
                                 </div>
                                 <div>
                                     {item.divContent.map((item, index) => {
                                         return (
-                                            <div className='MUI__section' key={item.id}>
-                                                <div className='MUI_description' key={item.id}>
+                                            <div className='MUI__section' key={item.index}>
+                                                <div className='MUI_description' key={item.index}>
                                                     {item.subDivDesc}
                                                 </div>
-                                                <div className='MUI__selections' key={item.id}>
+                                                <div className='MUI__selections' key={item.index}>
                                                     {item.subDivContent.map((item, index) => {
                                                         if (item.type === sSel) {
                                                             return (
-                                                                <SoapSelection desc={item.text} key={item.id} />
+                                                                <SoapSelection desc={item.text} key={item.narrative} id={item.narrative}/>
                                                             );
                                                         } else {
                                                             return (
@@ -57,11 +55,11 @@ class MainUI extends Component {
                                                                     {item.content.map((item, index) => {
                                                                         if (item.type === sSel) {
                                                                             return (
-                                                                                <SoapSelection desc={item.text} key={item.id} />
+                                                                                <SoapSelection desc={item.text} key={item.narrative} id={item.narrative}/>
                                                                             );
                                                                         } else {
                                                                             return (
-                                                                                <SoapDescription desc={item.text} isouter='false' key={item.id} />
+                                                                                <SoapDescription desc={item.text} isouter='false' key={item.i} />
                                                                             );
                                                                         }
                                                                     })}
